@@ -111,9 +111,9 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $producto = Producto::find($id);
+        $productos = Producto::find($id);
 
-        if(!$producto) {
+        if(!$productos) {
             return response()->json([
                 'message' => 'Producto no encontrado',
                 'status'  => 404
@@ -144,28 +144,20 @@ class ProductoController extends Controller
             ], 400);
         }
 
-        if ($request->has('nombre')) {
-            $producto->nombre = $request->input('nombre');
-        }
-        if ($request->has('precio_compra')) {
-            $producto->precio_compra = $request->input('precio_compra');
-        }
-        if ($request->has('precio_venta')) {
-            $producto->precio_venta = $request->input('precio_venta');
-        }
-        if ($request->has('stock')) {
-            $producto->stock = $request->input('stock');
-        }
-        if ($request->has('categoria_id')) {
-            $producto->categoria_id = $request->input('categoria_id');
-        }
+        $productos ->fill($request->only([
+            'nombre',
+            'precio_compra',
+            'precio_venta',
+            'stock',
+            'categoria_id'
+        ]));
 
-        $producto->save();
+        $productos->save();
 
         return response()->json([
             'message' => 'Producto actualizado correctamente',
             'status'  => 200,
-            'producto' => $producto
+            'producto' => $productos
         ], 200);
     }
 

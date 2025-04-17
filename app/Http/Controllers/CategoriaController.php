@@ -130,10 +130,14 @@ class CategoriaController extends Controller
             ], 400);
         }
 
-        // Solo actualiza si el campo fue enviado
+        /* Solo actualiza si el campo fue enviado
         if ($request->has('nombre')) {
             $categoria->nombre = $request->nombre;
-        }
+        }*/
+
+        $categoria->fill($request->only([
+            'nombre'
+        ]));
 
         $categoria->save();
 
