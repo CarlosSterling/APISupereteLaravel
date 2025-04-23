@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
-class Usuarios extends Model
+class Usuario extends Model
 {
     protected $table = 'usuarios';
 
@@ -17,4 +18,12 @@ class Usuarios extends Model
         'email',
         'rol',
     ];
+
+    public function setPasswordAttribute($value)
+    {
+
+        $this->attributes['password'] = Str::startsWith($value, '$2y$')
+            ? $value
+            : bcrypt($value);
+    }
 }

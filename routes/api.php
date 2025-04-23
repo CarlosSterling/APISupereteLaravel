@@ -2,13 +2,17 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuariosController;
+
 
 
 #Route::resource('categorias', CategoriaController::class);
+#Route::apiResource('usuarios', UsuariosController::class);
 
-Route::resource('categorias', 'App\Http\Controllers\CategoriaController');
-Route::resource('productos', 'App\Http\Controllers\ProductoController');
-Route::resource('usuarios', 'App\Http\Controllers\UsuariosController');
-Route::resource('cajaDiaria', 'App\Http\Controllers\CajaDiariaController');
-Route::Resource('detallesCaja', 'App\Http\Controllers\detallesCajaController');
-Route::Resource('transaccion', 'App\Http\Controllers\TransaccionController');
+Route::apiResource('categorias', 'App\Http\Controllers\CategoriaController');
+Route::apiResource('productos', 'App\Http\Controllers\ProductoController');
+Route::apiResource('usuarios', 'App\Http\Controllers\UsuariosController');
+Route::apiResource('cajaDiaria', 'App\Http\Controllers\CajaDiariaController');
+Route::apiResource('detallesCaja', 'App\Http\Controllers\detallesCajaController');
+Route::apiResource('transaccion', 'App\Http\Controllers\TransaccionController');
+
